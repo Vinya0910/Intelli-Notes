@@ -1,9 +1,26 @@
 import { Box, Card, CardContent, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 function Login() {
 
   const navigate = useNavigate();
+
+  // ✅ state added
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // ✅ login function
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/dashboard"); // redirect after login
+    } catch (error) {
+      alert(error.message); // simple error handling
+    }
+  };
 
   return (
     <Box
@@ -40,6 +57,8 @@ function Login() {
             variant="outlined"
             fullWidth
             margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // ✅ added
           />
 
           <TextField
@@ -48,9 +67,10 @@ function Login() {
             variant="outlined"
             fullWidth
             margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} // ✅ added
           />
 
-          {/* Login button navigation */}
           <Button
             variant="contained"
             fullWidth
@@ -59,12 +79,11 @@ function Login() {
               py: 1.2,
               fontWeight: "bold"
             }}
-            onClick={() => navigate("/dashboard")}
+            onClick={handleLogin} // ✅ changed
           >
             Login
           </Button>
 
-          {/* Signup navigation */}
           <Typography align="center" sx={{ mt: 2 }}>
             Don't have an account?{" "}
             <span

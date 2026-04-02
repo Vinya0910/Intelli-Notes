@@ -1,9 +1,33 @@
 import { Box, Card, CardContent, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 function Signup() {
 
   const navigate = useNavigate();
+
+  // ✅ state added
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // ✅ signup function
+  const handleSignup = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      // optional: save name
+      await updateProfile(userCredential.user, {
+        displayName: name,
+      });
+
+      navigate("/dashboard"); // redirect after signup
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
 
@@ -36,12 +60,16 @@ function Signup() {
             label="Name"
             fullWidth
             margin="normal"
+            value={name}
+            onChange={(e) => setName(e.target.value)} // ✅ added
           />
 
           <TextField
             label="Email"
             fullWidth
             margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // ✅ added
           />
 
           <TextField
@@ -49,12 +77,15 @@ function Signup() {
             type="password"
             fullWidth
             margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} // ✅ added
           />
 
           <Button
             variant="contained"
             fullWidth
             sx={{ mt: 2 }}
+            onClick={handleSignup} // ✅ added
           >
             Create Account
           </Button>
