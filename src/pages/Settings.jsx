@@ -1,18 +1,18 @@
 import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, Button, Switch } from "@mui/material";
-import { signOut } from "firebase/auth"; // ✅ add
-import { auth } from "../firebase/firebase"; // ✅ add
-import { useNavigate } from "react-router-dom"; // ✅ add
+import { signOut } from "firebase/auth"; 
+import { auth } from "../firebase/firebase"; 
+import { useNavigate } from "react-router-dom"; 
 
 function Settings() {
 
-  const navigate = useNavigate(); // ✅ add
+  const navigate = useNavigate(); 
 
-  // ✅ logout function
+ 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/login"); // redirect
+      navigate("/login"); 
     } catch (error) {
       alert(error.message);
     }
@@ -61,7 +61,7 @@ function Settings() {
             <Button 
               variant="contained" 
               color="error"
-              onClick={handleLogout} // ✅ add this
+              onClick={handleLogout} 
             >
               Logout
             </Button>

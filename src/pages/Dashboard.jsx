@@ -149,10 +149,9 @@ textOverflow: "ellipsis"
 <Box
 sx={{
 flexGrow: 1,
-p: 4,
-pl: 8,
 display: "flex",
-flexDirection: "column"
+justifyContent:"center",
+alignItem:"center"
 }}
 >
 
@@ -169,8 +168,8 @@ alignItems: "center"
 
 <Card
 sx={{
-width: "60%",
-maxWidth: "700px",
+width: "80%",
+maxWidth: "1000px",
 background: "rgba(30,30,30,0.6)",
 backdropFilter: "blur(10px)",
 borderRadius: "18px",
@@ -195,7 +194,7 @@ fontWeight: "bold",
 mb: 3
 }}
 > 
-"Everyidea begins with a note."
+"Every idea begins with a note."
 </Typography>
 
 <Typography
@@ -205,7 +204,7 @@ fontSize: "18px",
 lineHeight: 1.6
 }}
 > 
-Captureyour thoughts and let AI transform them into summaries, key points and insights.
+Capture your thoughts and let AI transform them into summaries, key points and insights.
 </Typography>
 
 </Card>

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/firebase"; // ✅ import auth
-
+import { auth } from "./firebase/firebase"; 
+import { signOut } from "firebase/auth"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+ signOut(auth);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);

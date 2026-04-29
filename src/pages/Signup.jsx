@@ -8,22 +8,22 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  // ✅ state added
+ 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // ✅ signup function
+
   const handleSignup = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-      // optional: save name
+      
       await updateProfile(userCredential.user, {
         displayName: name,
       });
 
-      navigate("/dashboard"); // redirect after signup
+      navigate("/dashboard"); 
     } catch (error) {
       alert(error.message);
     }
@@ -61,7 +61,7 @@ function Signup() {
             fullWidth
             margin="normal"
             value={name}
-            onChange={(e) => setName(e.target.value)} // ✅ added
+            onChange={(e) => setName(e.target.value)} 
           />
 
           <TextField
@@ -69,7 +69,7 @@ function Signup() {
             fullWidth
             margin="normal"
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // ✅ added
+            onChange={(e) => setEmail(e.target.value)} 
           />
 
           <TextField
@@ -78,14 +78,14 @@ function Signup() {
             fullWidth
             margin="normal"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // ✅ added
+            onChange={(e) => setPassword(e.target.value)} 
           />
 
           <Button
             variant="contained"
             fullWidth
             sx={{ mt: 2 }}
-            onClick={handleSignup} // ✅ added
+            onClick={handleSignup} 
           >
             Create Account
           </Button>

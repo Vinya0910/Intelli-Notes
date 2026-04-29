@@ -8,17 +8,17 @@ function Login() {
 
   const navigate = useNavigate();
 
-  // ✅ state added
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // ✅ login function
+  
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard"); // redirect after login
+      navigate("/dashboard"); 
     } catch (error) {
-      alert(error.message); // simple error handling
+      alert(error.message); 
     }
   };
 
@@ -68,7 +68,7 @@ function Login() {
             fullWidth
             margin="normal"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // ✅ added
+            onChange={(e) => setPassword(e.target.value)} 
           />
 
           <Button
@@ -79,7 +79,7 @@ function Login() {
               py: 1.2,
               fontWeight: "bold"
             }}
-            onClick={handleLogin} // ✅ changed
+            onClick={handleLogin} 
           >
             Login
           </Button>
