@@ -1,16 +1,69 @@
-# React + Vite
+🧠 AI Smart Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered note-taking web application that helps you create, manage, and enhance your notes intelligently.
+With built-in AI features, you can instantly generate summaries, key points, and questions from your notes.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🚀 Features
 
-## React Compiler
+- 📝 Create, edit, and delete notes
+- 🤖 AI-powered:
+  - Summarization
+  - Key points extraction
+  - Question generation
+- 🔐 User authentication (Firebase Auth)
+- ☁️ Cloud storage using Firebase Firestore
+- 🎨 Modern UI with responsive design
+- ⚡ Fast and smooth experience
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend
+
+- React.js
+- Material UI (MUI)
+- React Router
+
+Backend / Services
+
+- Firebase Authentication
+- Firebase Firestore
+
+AI Integration
+
+- Custom AI service (for summary, key points, questions)
+
+---
+
+📂 Project Structure
+
+src/
+ ├── components/
+ ├── pages/
+ │    ├── Login.jsx
+ │    ├── Signup.jsx
+ │    ├── Dashboard.jsx
+ │    ├── CreateNote.jsx
+ │    ├── Notes.jsx
+ │    └── Settings.jsx
+ ├── firebase/
+ ├── services/
+ └── App.jsx
+
+---
+
+✨ Future Improvements
+
+- 📱 Mobile responsiveness improvements
+- 🔍 Search & filter notes
+- 📌 Pin important notes
+- 🌙 Dark/Light mode toggle
+- 🧑‍💻 User-specific note filtering
+
+
+Built to combine note-taking + AI productivity into one seamless experience.
+
+---
