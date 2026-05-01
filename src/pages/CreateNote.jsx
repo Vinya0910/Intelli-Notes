@@ -1,6 +1,7 @@
 import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, TextField, Button } from "@mui/material";
 import { useState } from "react";
+import {auth} from "../firebase/firebase";
 
 // NEW IMPORTS
 import { addDoc, collection } from "firebase/firestore";
@@ -17,12 +18,17 @@ function CreateNote() {
 
   // SAVE NOTE FUNCTION
   const handleSaveNote = async () => {
-
+ if(!title || !description){
+alert("please fill all fields");
+return;
+}
     try {
 
       await addDoc(collection(db, "notes"), {
-        title: title,
-        content: description
+         title,
+         content: description,
+        userId: auth.currentUser.uid
+        
       });
 
       navigate("/dashboard");
