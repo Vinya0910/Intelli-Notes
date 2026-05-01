@@ -37,7 +37,9 @@ function Signup() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "linear-gradient(135deg,#0f2027,#203a43,#2c5364)"
+        p: 2,
+        background:
+          "radial-gradient(circle at 24% 16%, rgba(125,211,252,0.22), transparent 34%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
@@ -45,14 +47,14 @@ function Signup() {
         sx={{
           width: { xs: "90%", sm: 400 },
           p: 3,
-          borderRadius: 3,
-          backgroundColor: "#1e1e1e"
+          color: "white",
+          backdropFilter: "blur(18px)"
         }}
       >
 
         <CardContent>
 
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom sx={{ color: "white" }}>
             Sign Up
           </Typography>
 
@@ -93,7 +95,7 @@ function Signup() {
           <Typography align="center" sx={{ mt: 2 }}>
             Already have an account?
             <span
-              style={{ color: "#3f8cff", cursor: "pointer" }}
+              style={{ color: "#7dd3fc", cursor: "pointer", fontWeight: "bold" }}
               onClick={() => navigate("/login")}
             >
               {" "}Login

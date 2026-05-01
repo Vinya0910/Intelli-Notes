@@ -24,21 +24,20 @@ function Settings() {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        background: "linear-gradient(135deg,#0f2027,#203a43,#2c5364)"
+        background:
+          "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
       <Sidebar />
 
-      <Box sx={{ flexGrow: 1, p: 4, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, display: "flex", justifyContent: "center" }}>
 
         <Card
           sx={{
-            width: "40%",
-            background: "rgba(30,30,30,0.6)",
-            backdropFilter: "blur(10px)",
-            borderRadius: "12px",
-            color: "white"
+            width: { xs: "100%", md: "52%", lg: "40%" },
+            color: "white",
+            backdropFilter: "blur(18px)"
           }}
         >
 

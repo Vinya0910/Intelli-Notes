@@ -51,7 +51,8 @@ function Notes() {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        background: "linear-gradient(135deg,#0f2027,#203a43,#2c5364)"
+        background:
+          "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
@@ -60,7 +61,7 @@ function Notes() {
       <Box
         sx={{
           flexGrow: 1,
-          p: 4,
+          p: { xs: 2, md: 4 },
           display: "flex",
           flexDirection: "column",
           alignItems: "center"
@@ -76,13 +77,16 @@ function Notes() {
           <Card
             key={note.id}
             sx={{
-              width: "60%",
-              mb: 3,
-              background: "rgba(30,30,30,0.6)",
-              backdropFilter: "blur(10px)",
-              borderRadius: "12px",
-              color: "white"
-            }}
+          width: { xs: "100%", md: "72%", lg: "60%" },
+          mb: 3,
+          color: "white",
+          backdropFilter: "blur(18px)",
+          transition: "transform 0.2s ease, border-color 0.2s ease",
+          "&:hover": {
+            transform: "translateY(-3px)",
+            borderColor: "rgba(125, 211, 252, 0.38)"
+          }
+        }}
           >
 
             <CardContent>

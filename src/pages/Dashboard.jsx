@@ -84,20 +84,21 @@ sx={{
 display: "flex",
 minHeight: "100vh",
 background:
-"radial-gradient(circle at 30% 20%, rgba(79,195,247,0.15), transparent 40%), linear-gradient(135deg,#0f2027,#203a43,#2c5364)"
+"radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
 }}
 >
 
 <Sidebar />
 
-<Box sx={{ width: "30%", p: 3 }}>
+<Box sx={{ width: { xs: "34%", md: "30%" }, minWidth: { xs: 180, md: 280 }, p: { xs: 2, md: 3 } }}>
 
 <Typography
 variant="h4"
 sx={{
 color: "white",
 mb: 3,
-fontWeight: "bold"
+fontWeight: "bold",
+letterSpacing: "-0.03em"
 }}
 > 
 YourNotes
@@ -111,22 +112,22 @@ sx={{
 mb: 2,
 background:
 selectedNote?.id === note.id
-? "#2a3b47"
-: "#1e1e1e",
+? "linear-gradient(135deg, rgba(125,211,252,0.18), rgba(165,180,252,0.12))"
+: "rgba(15,23,42,0.62)",
 color: "white",
-borderRadius: "10px",
 cursor: "pointer",
 transition: "0.25s",
 width: "100%",
 
 "&:hover": {
-transform: "scale(1.04)"
+transform: "translateX(4px)",
+borderColor: "rgba(125, 211, 252, 0.38)"
 },
 
 boxShadow:
 selectedNote?.id === note.id
-? "0px 0px 12px rgba(79,195,247,0.6)"
-: "none"
+? "0 18px 45px rgba(2, 6, 23, 0.28)"
+: "0 12px 28px rgba(2, 6, 23, 0.18)"
 
 }}
 >
@@ -151,7 +152,8 @@ sx={{
 flexGrow: 1,
 display: "flex",
 justifyContent:"center",
-alignItem:"center"
+alignItems:"center",
+p: { xs: 2, md: 4 }
 }}
 >
 
@@ -170,18 +172,15 @@ alignItems: "center"
 sx={{
 width: "80%",
 maxWidth: "1000px",
-background: "rgba(30,30,30,0.6)",
-backdropFilter: "blur(10px)",
-borderRadius: "18px",
+backdropFilter: "blur(18px)",
 color: "white",
 textAlign: "center",
 padding: "55px",
-boxShadow: "0px 10px 40px rgba(0,0,0,0.4)",
 transition: "0.35s",
 
 "&:hover": {
-transform: "translateY(-10px) scale(1.03)",
-boxShadow: "0px 25px 60px rgba(0,0,0,0.6)"
+transform: "translateY(-6px)",
+borderColor: "rgba(125, 211, 252, 0.38)"
 }
 
 }}
@@ -218,11 +217,8 @@ Capture your thoughts and let AI transform them into summaries, key points and i
 <Card
 sx={{
 width: "85%",
-background: "rgba(30,30,30,0.6)",
-backdropFilter: "blur(10px)",
-borderRadius: "14px",
+backdropFilter: "blur(18px)",
 color: "white",
-boxShadow: "0px 8px 25px rgba(0,0,0,0.4)",
 maxHeight: "80vh",
 overflowY: "auto",
 
