@@ -3,7 +3,7 @@ import { Box, Typography, Card, CardContent, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
 // FIREBASE IMPORTS
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc,query,where } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 function Notes() {
@@ -15,7 +15,12 @@ function Notes() {
 
     const fetchNotes = async () => {
 
-      const querySnapshot = await getDocs(collection(db, "notes"));
+     if (!auth.currentUser) return;
+     const q =query(
+     collection(db,"notes"),
+     where("userId", "==",auth.currentUser.uid)
+     );
+     const querySnapshot = await getDocs(q);
 
       const data = querySnapshot.docs.map(doc => ({
         id: doc.id,

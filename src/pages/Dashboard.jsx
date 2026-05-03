@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query,where } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 import { generateAI } from "../services/ai";
@@ -15,8 +15,12 @@ const [aiResult, setAiResult] = useState("");
 
 useEffect(() => {
 const fetchNotes = async () => {
-
-const querySnapshot = await getDocs(collection(db, "notes"));
+if (!auth.currentUser) return;
+const q =query(
+collection(db,"notes"),
+where("userId", "==",auth.currentUser.uid)
+);
+const querySnapshot = await getDocs(q);
 
 const data = querySnapshot.docs.map(doc => ({
 id: doc.id,
