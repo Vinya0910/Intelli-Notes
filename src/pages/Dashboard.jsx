@@ -304,3 +304,4 @@ whiteSpace: "pre-line"
 }
 
 export default Dashboard;
+//Dashboard page
