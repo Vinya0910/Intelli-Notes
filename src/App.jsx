@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase"; 
-
+import { signOut } from "firebase/auth"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -15,8 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // ❌ REMOVED: signOut(auth);
-
+ signOut(auth);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
@@ -25,14 +24,6 @@ function App() {
     return () => unsubscribe();
   }, []);
 
- // ✅ ADD THIS (prevents redirect before auth loads)
-  if (loading) {
-    return (
-      <div style={{ color: "white", textAlign: "center", marginTop: "100px" }}>
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <BrowserRouter>
