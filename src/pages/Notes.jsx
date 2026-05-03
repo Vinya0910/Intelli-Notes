@@ -10,12 +10,12 @@ function Notes() {
 
   const [notes, setNotes] = useState([]);
 
-  // 🔥 NEW STATES (for edit)
+ 
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
 
-  // FETCH NOTES FROM FIREBASE
+
   useEffect(() => {
 
     const fetchNotes = async () => {
@@ -41,7 +41,7 @@ function Notes() {
 
   }, []);
 
-  // DELETE NOTE
+ 
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "notes", id));
@@ -51,7 +51,24 @@ function Notes() {
     }
   };
 
-  // 🔥 UPDATE NOTE
+  // 🔥 PIN / UNPIN
+  const handlePin = async (note) => {
+    try {
+      await updateDoc(doc(db, "notes", note.id), {
+        isPinned: !note.isPinned
+      });
+
+      setNotes(notes.map(n =>
+        n.id === note.id
+          ? { ...n, isPinned: !n.isPinned }
+          : n
+      ));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ 
   const handleUpdate = async (id) => {
 
     if (!editTitle || !editContent) {
@@ -65,7 +82,6 @@ function Notes() {
         content: editContent
       });
 
-      // Update UI instantly
       setNotes(notes.map(note =>
         note.id === id
           ? { ...note, title: editTitle, content: editContent }
@@ -78,6 +94,11 @@ function Notes() {
       console.log(error);
     }
   };
+
+
+  const sortedNotes = [...notes].sort((a, b) => {
+    return (b.isPinned === true) - (a.isPinned === true);
+  });
 
   return (
 
@@ -106,7 +127,7 @@ function Notes() {
           All Notes
         </Typography>
 
-        {notes.map((note) => (
+        {sortedNotes.map((note) => (
 
           <Card
             key={note.id}
@@ -125,7 +146,7 @@ function Notes() {
 
             <CardContent>
 
-              {/* 🔥 CONDITIONAL EDIT UI */}
+         
               {editingId === note.id ? (
                 <>
                   <TextField
@@ -146,7 +167,7 @@ function Notes() {
               ) : (
                 <>
                   <Typography variant="h6">
-                    {note.title}
+                    {note.isPinned ? "📌 " + note.title : note.title}
                   </Typography>
 
                   <Typography
@@ -164,7 +185,6 @@ function Notes() {
 
               <Box sx={{ mt: 2 }}>
 
-                {/* 🔥 BUTTONS SWITCH */}
                 {editingId === note.id ? (
                   <>
                     <Button
@@ -197,6 +217,16 @@ function Notes() {
                       }}
                     >
                       Edit
+                    </Button>
+
+               
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      sx={{ mr: 2, color: "white", borderColor: "white" }}
+                      onClick={() => handlePin(note)}
+                    >
+                      {note.isPinned ? "Unpin" : "Pin"}
                     </Button>
 
                     <Button

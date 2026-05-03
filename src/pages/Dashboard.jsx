@@ -2,8 +2,8 @@ import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { collection, getDocs, query,where } from "firebase/firestore";
-import { db ,auth} from "../firebase/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db, auth } from "../firebase/firebase";
 
 import { generateAI } from "../services/ai";
 
@@ -16,10 +16,12 @@ const [aiResult, setAiResult] = useState("");
 useEffect(() => {
 const fetchNotes = async () => {
 if (!auth.currentUser) return;
-const q =query(
-collection(db,"notes"),
-where("userId", "==",auth.currentUser.uid)
+
+const q = query(
+collection(db, "notes"),
+where("userId", "==", auth.currentUser.uid)
 );
+
 const querySnapshot = await getDocs(q);
 
 const data = querySnapshot.docs.map(doc => ({
@@ -27,10 +29,16 @@ id: doc.id,
 ...doc.data()
 }));
 
-setNotes(data);
 
-if (data.length > 0) {
-setSelectedNote(data[0]);
+const sortedData = [...data].sort((a, b) => {
+return (b.isPinned === true) - (a.isPinned === true);
+});
+
+setNotes(sortedData);
+
+
+if (sortedData.length > 0) {
+setSelectedNote(sortedData[0]);
 }
 
 };
@@ -41,43 +49,25 @@ fetchNotes();
 
 
 const handleSummary = async () => {
-
 if (!selectedNote) return;
-
 const prompt = "Summarize this note:\n" + selectedNote.content;
-
 const result = await generateAI(prompt);
-
 setAiResult(result);
-
 };
-
 
 const handleKeyPoints = async () => {
-
 if (!selectedNote) return;
-
 const prompt = "Give key points from this note:\n" + selectedNote.content;
-
 const result = await generateAI(prompt);
-
 setAiResult(result);
-
 };
-
 
 const handleQuestions = async () => {
-
 if (!selectedNote) return;
-
 const prompt = "Generate questions from this note:\n" + selectedNote.content;
-
 const result = await generateAI(prompt);
-
 setAiResult(result);
-
 };
-
 
 
 return (
@@ -200,7 +190,8 @@ overflow: "hidden",
 textOverflow: "ellipsis"
 }}
 > 
-{note.title}
+{/* 🔥 PIN ICON ADDED */}
+{note.isPinned ? "📌 " + note.title : note.title}
 </CardContent>
 
 </Card>
