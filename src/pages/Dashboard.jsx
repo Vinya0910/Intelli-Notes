@@ -3,7 +3,7 @@ import { Box, Typography, Card, CardContent, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
 import { collection, getDocs, query,where } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db ,auth} from "../firebase/firebase";
 
 import { generateAI } from "../services/ai";
 

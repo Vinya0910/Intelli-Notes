@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 // FIREBASE IMPORTS
 import { collection, getDocs, deleteDoc, doc,query,where } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db,auth } from "../firebase/firebase";
 
 function Notes() {
 
