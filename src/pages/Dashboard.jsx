@@ -14,7 +14,6 @@ const [selectedNote, setSelectedNote] = useState(null);
 const [aiResult, setAiResult] = useState("");
 
 useEffect(() => {
-
 const fetchNotes = async () => {
 
 const querySnapshot = await getDocs(collection(db, "notes"));
@@ -90,6 +89,64 @@ background:
 
 <Sidebar />
 
+{notes.length === 0 ? (
+
+<Box
+sx={{
+flexGrow: 1,
+display: "flex",
+justifyContent: "center",
+alignItems: "center",
+p: { xs: 2, md: 4 }
+}}
+>
+
+<Card
+sx={{
+width: "80%",
+maxWidth: "1000px",
+backdropFilter: "blur(18px)",
+color: "white",
+textAlign: "center",
+padding: "55px",
+transition: "0.35s",
+
+"&:hover": {
+transform: "translateY(-6px)",
+borderColor: "rgba(125, 211, 252, 0.38)"
+}
+
+}}
+>
+
+<Typography
+variant="h3"
+sx={{
+fontWeight: "bold",
+mb: 3
+}}
+> 
+"Every idea begins with a note."
+</Typography>
+
+<Typography
+sx={{
+color: "#ccc",
+fontSize: "18px",
+lineHeight: 1.6
+}}
+> 
+Capture your thoughts and let AI transform them into summaries, key points and insights.
+</Typography>
+
+</Card>
+
+</Box>
+
+) : (
+
+<>
+
 <Box sx={{ width: { xs: "34%", md: "30%" }, minWidth: { xs: 180, md: 280 }, p: { xs: 2, md: 3 } }}>
 
 <Typography
@@ -156,61 +213,6 @@ alignItems:"center",
 p: { xs: 2, md: 4 }
 }}
 >
-
-{notes.length === 0 && (
-
-<Box
-sx={{
-flexGrow: 1,
-display: "flex",
-justifyContent: "center",
-alignItems: "center"
-}}
->
-
-<Card
-sx={{
-width: "80%",
-maxWidth: "1000px",
-backdropFilter: "blur(18px)",
-color: "white",
-textAlign: "center",
-padding: "55px",
-transition: "0.35s",
-
-"&:hover": {
-transform: "translateY(-6px)",
-borderColor: "rgba(125, 211, 252, 0.38)"
-}
-
-}}
->
-
-<Typography
-variant="h3"
-sx={{
-fontWeight: "bold",
-mb: 3
-}}
-> 
-"Every idea begins with a note."
-</Typography>
-
-<Typography
-sx={{
-color: "#ccc",
-fontSize: "18px",
-lineHeight: 1.6
-}}
-> 
-Capture your thoughts and let AI transform them into summaries, key points and insights.
-</Typography>
-
-</Card>
-
-</Box>
-
-)}
 
 {selectedNote && (
 
@@ -295,6 +297,10 @@ whiteSpace: "pre-line"
 )}
 
 </Box>
+
+</>
+
+)}
 
 </Box>
 
