@@ -12,6 +12,7 @@ function Dashboard() {
 const [notes, setNotes] = useState([]);
 const [selectedNote, setSelectedNote] = useState(null);
 const [aiResult, setAiResult] = useState("");
+const[loading,setLoading] = useState(true);
 
 useEffect(() => {
 const fetchNotes = async () => {
@@ -40,7 +41,7 @@ setNotes(sortedData);
 if (sortedData.length > 0) {
 setSelectedNote(sortedData[0]);
 }
-
+setLoading(false);
 };
 
 fetchNotes();
@@ -69,7 +70,6 @@ const result = await generateAI(prompt);
 setAiResult(result);
 };
 
-
 return (
 
 <Box
@@ -83,7 +83,7 @@ background:
 
 <Sidebar />
 
-{notes.length === 0 ? (
+{ !loading && notes.length === 0 ? (
 
 <Box
 sx={{
