@@ -5,7 +5,8 @@ const navItems = [
   { label: "Dashboard", to: "/dashboard" },
   { label: "Notes", to: "/notes" },
   { label: "Create", to: "/create-note" },
-  { label: "Settings", to: "/settings" }
+  { label: "Settings", to: "/settings" },
+  {label: "AI Assistant",to:"/ai-assistant"}
 ];
 
 function Sidebar() {

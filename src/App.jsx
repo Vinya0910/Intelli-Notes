@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Notes from "./pages/Notes";
 import CreateNote from "./pages/CreateNote";
 import Settings from "./pages/Settings";
+import AIAssistant from "./pages/AIAssistant";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,7 +41,8 @@ function App() {
         <Route path="/notes" element={user ? <Notes /> : <Navigate to="/login" />} />
         <Route path="/create-note" element={user ? <CreateNote /> : <Navigate to="/login" />} />
         <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
-
+         <Route path="/ai-assistant" element={user ? <AIAssistant /> : <Navigate to="/login" />} />
+ 
       </Routes>
     </BrowserRouter>
   );
