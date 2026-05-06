@@ -10,6 +10,7 @@ import Notes from "./pages/Notes";
 import CreateNote from "./pages/CreateNote";
 import Settings from "./pages/Settings";
 import AIAssistant from "./pages/AIAssistant";
+import PinnedNotes from "./pages/PinnedNotes";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/create-note" element={user ? <CreateNote /> : <Navigate to="/login" />} />
         <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
          <Route path="/ai-assistant" element={user ? <AIAssistant /> : <Navigate to="/login" />} />
+         <Route path="/pinned-notes" element={user ? <PinnedNotes /> : <Navigate to="/login" />} />
  
       </Routes>
     </BrowserRouter>

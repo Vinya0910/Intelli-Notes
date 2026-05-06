@@ -27,7 +27,9 @@ return;
       await addDoc(collection(db, "notes"), {
          title,
          content: description,
-        userId: auth.currentUser.uid
+        userId: auth.currentUser.uid,
+        isPinned: false
+      
         
       });
 

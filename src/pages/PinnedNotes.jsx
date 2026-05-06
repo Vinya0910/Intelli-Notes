@@ -1,3 +1,4 @@
+
 import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, Button, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
@@ -6,7 +7,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase";
 
-function Notes() {
+function PinnedNotes() {
 
   const [notes, setNotes] = useState([]);
 
@@ -24,7 +25,8 @@ function Notes() {
 
       const q = query(
         collection(db, "notes"),
-        where("userId", "==", auth.currentUser.uid)
+        where("userId", "==", auth.currentUser.uid),
+         where("isPinned","==",true)
       );
 
       const querySnapshot = await getDocs(q);
@@ -51,18 +53,18 @@ function Notes() {
     }
   };
 
-  
+  // 🔥 PIN / UNPIN
   const handlePin = async (id,currentPinStatus) => {
     try {
-      await updateDoc(doc(db, "notes", id), {
-        isPinned: !currentPinStatus
-      });
-
-      setNotes(notes.map(note =>
-        note.id === id
-          ? { ...note, isPinned: ! currentPinStatus }
-          : note
-      ));
+       await updateDoc(doc(db, "notes", id), {
+             isPinned: !currentPinStatus
+           });
+     
+           setNotes(notes.map(note =>
+             note.id === id
+               ? { ...note, isPinned: ! currentPinStatus }
+               : note
+           ));
     } catch (error) {
       console.log(error);
     }
@@ -124,7 +126,7 @@ function Notes() {
       >
 
         <Typography variant="h4" sx={{ color: "white", mb: 4 }}>
-          All Notes
+          Pinned Notes
         </Typography>
 
         {sortedNotes.map((note) => (
@@ -255,4 +257,4 @@ function Notes() {
   );
 }
 
-export default Notes;
+export default PinnedNotes;
