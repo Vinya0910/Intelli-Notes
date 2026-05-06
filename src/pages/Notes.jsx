@@ -10,11 +10,12 @@ function Notes() {
 
   const [notes, setNotes] = useState([]);
 
- 
+  // SEARCH STATE
+  const [search, setSearch] = useState("");
+
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
-
 
   useEffect(() => {
 
@@ -41,7 +42,7 @@ function Notes() {
 
   }, []);
 
- 
+  // DELETE NOTE
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "notes", id));
@@ -51,24 +52,28 @@ function Notes() {
     }
   };
 
-  
-  const handlePin = async (id,currentPinStatus) => {
+  // PIN / UNPIN
+  const handlePin = async (id, currentPinStatus) => {
+
     try {
+
       await updateDoc(doc(db, "notes", id), {
         isPinned: !currentPinStatus
       });
 
       setNotes(notes.map(note =>
         note.id === id
-          ? { ...note, isPinned: ! currentPinStatus }
+          ? { ...note, isPinned: !currentPinStatus }
           : note
       ));
+
     } catch (error) {
       console.log(error);
     }
+
   };
 
- 
+  // UPDATE NOTE
   const handleUpdate = async (id) => {
 
     if (!editTitle || !editContent) {
@@ -77,6 +82,7 @@ function Notes() {
     }
 
     try {
+
       await updateDoc(doc(db, "notes", id), {
         title: editTitle,
         content: editContent
@@ -95,9 +101,25 @@ function Notes() {
     }
   };
 
-
+  // SORT NOTES
   const sortedNotes = [...notes].sort((a, b) => {
+
+    const aSearchMatch = a.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const bSearchMatch = b.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    // Search match first
+    if (aSearchMatch !== bSearchMatch) {
+      return bSearchMatch - aSearchMatch;
+    }
+
+    // Then pinned notes
     return (b.isPinned === true) - (a.isPinned === true);
+
   });
 
   return (
@@ -127,6 +149,37 @@ function Notes() {
           All Notes
         </Typography>
 
+        {/* SEARCH BAR */}
+        <TextField
+          placeholder="Search notes by title..."
+          fullWidth
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          sx={{
+            width: { xs: "100%", md: "72%", lg: "60%" },
+            mb: 4,
+
+            input: {
+              color: "white"
+            },
+
+            "& .MuiOutlinedInput-root": {
+
+              "& fieldset": {
+                borderColor: "rgba(255,255,255,0.3)"
+              },
+
+              "&:hover fieldset": {
+                borderColor: "#4fc3f7"
+              },
+
+              "&.Mui-focused fieldset": {
+                borderColor: "#4fc3f7"
+              }
+            }
+          }}
+        />
+
         {sortedNotes.map((note) => (
 
           <Card
@@ -137,6 +190,7 @@ function Notes() {
               color: "white",
               backdropFilter: "blur(18px)",
               transition: "transform 0.2s ease, border-color 0.2s ease",
+
               "&:hover": {
                 transform: "translateY(-3px)",
                 borderColor: "rgba(125, 211, 252, 0.38)"
@@ -146,7 +200,6 @@ function Notes() {
 
             <CardContent>
 
-         
               {editingId === note.id ? (
                 <>
                   <TextField
@@ -219,12 +272,11 @@ function Notes() {
                       Edit
                     </Button>
 
-               
                     <Button
                       variant="outlined"
                       size="small"
                       sx={{ mr: 2, color: "white", borderColor: "white" }}
-                      onClick={() => handlePin(note.id,note.isPinned)}
+                      onClick={() => handlePin(note.id, note.isPinned)}
                     >
                       {note.isPinned ? "Unpin" : "Pin"}
                     </Button>
