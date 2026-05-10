@@ -1,21 +1,37 @@
 import Sidebar from "../components/Sidebar";
-import { Box, Typography, Card, CardContent, Button, Switch } from "@mui/material";
-import { signOut } from "firebase/auth"; 
-import { auth } from "../firebase/firebase"; 
-import { useNavigate } from "react-router-dom"; 
 
-function Settings() {
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+  Switch
+} from "@mui/material";
 
-  const navigate = useNavigate(); 
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
- 
+import { useNavigate } from "react-router-dom";
+
+function Settings({ lightMode, setLightMode }) {
+
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
+
     try {
+
       await signOut(auth);
-      navigate("/login"); 
+
+      navigate("/login");
+
     } catch (error) {
+
       alert(error.message);
+
     }
+
   };
 
   return (
@@ -25,19 +41,34 @@ function Settings() {
         display: "flex",
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          lightMode
+            ? "#f4f7fb"
+            : "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
       <Sidebar />
 
-      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, display: "flex", justifyContent: "center" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          p: { xs: 2, md: 4 },
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
 
         <Card
           sx={{
             width: { xs: "100%", md: "52%", lg: "40%" },
-            color: "white",
-            backdropFilter: "blur(18px)"
+
+            color: lightMode ? "#111" : "white",
+
+            backdropFilter: "blur(18px)",
+
+            background: lightMode
+              ? "white"
+              : "rgba(15,23,42,0.7)"
           }}
         >
 
@@ -48,19 +79,22 @@ function Settings() {
             </Typography>
 
             <Typography sx={{ mb: 2 }}>
-              Dark Mode
+              Light Mode
             </Typography>
 
-            <Switch />
+            <Switch
+              checked={lightMode}
+              onChange={() => setLightMode(!lightMode)}
+            />
 
             <Typography sx={{ mt: 4, mb: 2 }}>
               Logout
             </Typography>
 
-            <Button 
-              variant="contained" 
+            <Button
+              variant="contained"
               color="error"
-              onClick={handleLogout} 
+              onClick={handleLogout}
             >
               Logout
             </Button>
