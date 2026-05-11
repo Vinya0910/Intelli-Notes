@@ -158,7 +158,8 @@ Rules:
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        overflowX: "hidden"
       }}
     >
 
@@ -170,16 +171,17 @@ Rules:
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          p: { xs: 2, md: 4 },
+          p: { xs: 2, sm: 3, md: 4 },
           minWidth: 0
         }}
       >
 
         <Card
           sx={{
-            width: { xs: "100%", md: "85%" },
+            width: "100%",
+            maxWidth: 980,
             minHeight: { xs: "auto", md: "85vh" },
-            backdropFilter: "blur(18px)",
+            backdropFilter: "blur(22px)",
             color: "white",
             overflow: "hidden"
           }}
@@ -220,7 +222,10 @@ Rules:
               }}
               sx={{
                 mb: 4,
-                color: "white"
+                color: "white",
+                "& .MuiSelect-icon": {
+                  color: "text.secondary"
+                }
               }}
             >
 
@@ -310,7 +315,8 @@ Rules:
                 maxHeight: "250px",
                 overflowY: "auto",
                 p: 2,
-                borderRadius: "12px",
+                borderRadius: 2,
+                border: "1px solid rgba(148, 163, 184, 0.16)",
                 background: "rgba(255,255,255,0.05)"
               }}
             >
@@ -369,7 +375,7 @@ Rules:
 
             <Button
               variant="contained"
-              sx={{ mt: 2 }}
+              sx={{ mt: 2, minWidth: { xs: "100%", sm: 120 } }}
               onClick={handleChat}
             >
               Ask AI

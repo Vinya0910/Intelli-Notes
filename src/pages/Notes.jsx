@@ -130,7 +130,8 @@ function Notes() {
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        overflowX: "hidden"
       }}
     >
 
@@ -139,7 +140,7 @@ function Notes() {
       <Box
         sx={{
           flexGrow: 1,
-          p: { xs: 2, md: 4 },
+          p: { xs: 2, sm: 3, md: 4 },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -158,7 +159,8 @@ function Notes() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           sx={{
-            width: { xs: "100%", md: "72%", lg: "60%" },
+            width: "100%",
+            maxWidth: 820,
             mb: 4,
 
             input: {
@@ -187,7 +189,8 @@ function Notes() {
           <Card
             key={note.id}
             sx={{
-              width: { xs: "100%", md: "72%", lg: "60%" },
+              width: "100%",
+              maxWidth: 820,
               mb: 3,
               color: "white",
               backdropFilter: "blur(18px)",
@@ -221,7 +224,7 @@ function Notes() {
                 </>
               ) : (
                 <>
-                  <Typography variant="h6">
+                  <Typography variant="h6" sx={{ overflowWrap: "anywhere" }}>
                     {note.isPinned ? "📌 " + note.title : note.title}
                   </Typography>
 

@@ -84,19 +84,20 @@ function Login() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        p: 2,
+        p: { xs: 2, sm: 3 },
 
         background:
-          "radial-gradient(circle at 24% 16%, rgba(125,211,252,0.22), transparent 34%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          "radial-gradient(circle at 20% 12%, rgba(125,211,252,0.24), transparent 32%), radial-gradient(circle at 84% 16%, rgba(165,180,252,0.18), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
       <Card
         sx={{
-          width: { xs: "90%", sm: 400 },
-          p: 3,
+          width: "100%",
+          maxWidth: 430,
+          p: { xs: 1, sm: 2 },
           color: "white",
-          backdropFilter: "blur(18px)"
+          backdropFilter: "blur(22px)"
         }}
       >
 
@@ -108,7 +109,8 @@ function Login() {
             gutterBottom
             sx={{
               fontWeight: "bold",
-              color: "white"
+              color: "white",
+              fontSize: { xs: 30, sm: 34 }
             }}
           >
             Login
@@ -137,7 +139,7 @@ function Login() {
             variant="contained"
             fullWidth
             sx={{
-              mt: 2,
+              mt: 2.5,
               py: 1.2,
               fontWeight: "bold"
             }}
@@ -154,7 +156,9 @@ function Login() {
               mt: 2,
               color: "#7dd3fc",
               cursor: "pointer",
-              fontWeight: "bold"
+              fontWeight: "bold",
+              width: "fit-content",
+              mx: "auto"
             }}
           >
             Forgot Password?

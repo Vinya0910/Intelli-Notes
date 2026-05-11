@@ -44,7 +44,8 @@ function Settings({ lightMode, setLightMode }) {
         background:
           lightMode
             ? "#f4f7fb"
-            : "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+            : "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        overflowX: "hidden"
       }}
     >
 
@@ -53,7 +54,7 @@ function Settings({ lightMode, setLightMode }) {
       <Box
         sx={{
           flexGrow: 1,
-          p: { xs: 2, md: 4 },
+          p: { xs: 2, sm: 3, md: 4 },
           display: "flex",
           justifyContent: "center",
           minWidth: 0
@@ -62,7 +63,8 @@ function Settings({ lightMode, setLightMode }) {
 
         <Card
           sx={{
-            width: { xs: "100%", md: "52%", lg: "40%" },
+            width: "100%",
+            maxWidth: 560,
             alignSelf: "flex-start",
 
             color: lightMode ? "#111" : "white",
@@ -85,10 +87,31 @@ function Settings({ lightMode, setLightMode }) {
               Light Mode
             </Typography>
 
-            <Switch
-              checked={lightMode}
-              onChange={() => setLightMode(!lightMode)}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 2,
+                p: 2,
+                borderRadius: 2,
+                border: lightMode
+                  ? "1px solid rgba(15, 23, 42, 0.1)"
+                  : "1px solid rgba(148, 163, 184, 0.18)",
+                background: lightMode
+                  ? "rgba(241, 245, 249, 0.72)"
+                  : "rgba(255,255,255,0.04)"
+              }}
+            >
+              <Typography sx={{ mb: 0 }}>
+                Theme preference
+              </Typography>
+
+              <Switch
+                checked={lightMode}
+                onChange={() => setLightMode(!lightMode)}
+              />
+            </Box>
 
             <Typography sx={{ mt: 4, mb: 2 }}>
               Logout
@@ -97,6 +120,7 @@ function Settings({ lightMode, setLightMode }) {
             <Button
               variant="contained"
               color="error"
+              sx={{ minWidth: { xs: "100%", sm: 120 } }}
               onClick={handleLogout}
             >
               Logout

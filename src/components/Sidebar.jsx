@@ -17,12 +17,12 @@ function Sidebar() {
       sx={{
         width: { xs: "100%", md: 220 },
         flexShrink: 0,
-        px: { xs: 1.5, md: 2 },
-        py: { xs: 1.5, md: 3 },
+        px: { xs: 1.25, md: 2 },
+        py: { xs: 1.25, md: 3 },
         borderRight: { xs: 0, md: "1px solid rgba(148, 163, 184, 0.18)" },
         borderBottom: { xs: "1px solid rgba(148, 163, 184, 0.18)", md: 0 },
-        background: "rgba(4, 12, 24, 0.72)",
-        backdropFilter: "blur(18px)",
+        background: "rgba(4, 12, 24, 0.82)",
+        backdropFilter: "blur(22px)",
         display: "flex",
         flexDirection: { xs: "row", md: "column" },
         alignItems: { xs: "center", md: "stretch" },
@@ -38,7 +38,8 @@ function Sidebar() {
           sx={{
             color: "white",
             lineHeight: 1,
-            display: { xs: "none", md: "block" }
+            display: { xs: "none", md: "block" },
+            fontWeight: 800
           }}
         >
           Smart Notes
@@ -48,7 +49,8 @@ function Sidebar() {
             mt: 0.75,
             color: "text.secondary",
             fontSize: 12,
-            display: { xs: "none", md: "block" }
+            display: { xs: "none", md: "block" },
+            letterSpacing: 0
           }}
         >
           AI workspace
@@ -59,7 +61,9 @@ function Sidebar() {
             color: "white",
             textAlign: "center",
             display: { xs: "block", md: "none" },
-            fontSize: { xs: 18, sm: 20 }
+            fontSize: { xs: 18, sm: 20 },
+            fontWeight: 800,
+            minWidth: 42
           }}
         >
           SN
@@ -73,8 +77,11 @@ function Sidebar() {
           gap: 1,
           overflowX: { xs: "auto", md: "visible" },
           flexGrow: 1,
-          pb: { xs: 0.5, md: 0 },
-          scrollbarWidth: "thin"
+          pb: { xs: 0.25, md: 0 },
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none"
+          }
         }}
       >
         {navItems.map((item) => (
@@ -84,17 +91,22 @@ function Sidebar() {
             to={item.to}
             sx={{
               justifyContent: { xs: "center", md: "flex-start" },
-              px: { xs: 1.25, md: 1.5 },
+              px: { xs: 1.5, md: 1.5 },
+              py: { xs: 0.85, md: 1 },
               minWidth: { xs: "max-content", md: 64 },
               whiteSpace: "nowrap",
+              border: "1px solid transparent",
               color: "text.secondary",
+              fontSize: { xs: 13, md: 14 },
               "&.active": {
                 color: "primary.contrastText",
-                background: "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)"
+                background: "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
+                boxShadow: "0 14px 28px rgba(125, 211, 252, 0.18)"
               },
               "&:hover": {
                 color: "white",
-                backgroundColor: "rgba(148, 163, 184, 0.12)"
+                backgroundColor: "rgba(148, 163, 184, 0.12)",
+                borderColor: "rgba(148, 163, 184, 0.18)"
               }
             }}
           >

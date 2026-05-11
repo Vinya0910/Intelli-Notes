@@ -78,7 +78,8 @@ display: "flex",
 flexDirection: { xs: "column", md: "row" },
 minHeight: "100vh",
 background:
-"radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+"radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+overflowX: "hidden"
 }}
 >
 
@@ -93,7 +94,8 @@ display: "flex",
 justifyContent: "center",
 alignItems: "center",
 p: { xs: 2, md: 4 },
-minWidth: 0
+minWidth: 0,
+width: "100%"
 }}
 >
 
@@ -144,7 +146,7 @@ Capture your thoughts and let AI transform them into summaries, key points and i
 
 <>
 
-<Box sx={{ width: { xs: "100%", md: "32%" }, minWidth: { xs: 0, md: 280 }, p: { xs: 2, md: 3 } }}>
+<Box sx={{ width: { xs: "100%", md: "32%" }, minWidth: { xs: 0, md: 280 }, maxWidth: { xs: "100%", md: 380 }, p: { xs: 2, md: 3 } }}>
 
 <Typography
 variant="h4"
@@ -156,7 +158,7 @@ letterSpacing: 0,
 fontSize: { xs: 28, md: 34 }
 }}
 > 
-YourNotes
+Your Notes
 </Typography>
 
 {notes.map((note) => (
@@ -173,9 +175,12 @@ color: "white",
 cursor: "pointer",
 transition: "0.25s",
 width: "100%",
+border: selectedNote?.id === note.id
+? "1px solid rgba(125, 211, 252, 0.42)"
+: "1px solid rgba(148, 163, 184, 0.16)",
 
 "&:hover": {
-transform: "translateX(4px)",
+transform: { xs: "translateY(-2px)", md: "translateX(4px)" },
 borderColor: "rgba(125, 211, 252, 0.38)"
 },
 
@@ -191,7 +196,9 @@ selectedNote?.id === note.id
 sx={{
 whiteSpace: "nowrap",
 overflow: "hidden",
-textOverflow: "ellipsis"
+textOverflow: "ellipsis",
+py: { xs: 2, md: 2.25 },
+fontWeight: 700
 }}
 > 
 {/* 🔥 PIN ICON ADDED */}
@@ -210,7 +217,8 @@ display: "flex",
 justifyContent:"center",
 alignItems:"center",
 p: { xs: 2, md: 4 },
-minWidth: 0
+minWidth: 0,
+width: "100%"
 }}
 >
 
@@ -219,6 +227,7 @@ minWidth: 0
 <Card
 sx={{
 width: { xs: "100%", md: "85%" },
+maxWidth: 880,
 backdropFilter: "blur(18px)",
 color: "white",
 maxHeight: { xs: "none", md: "80vh" },
@@ -244,7 +253,7 @@ borderRadius: "10px"
 {selectedNote.title}
 </Typography>
 
-<Typography sx={{ color: "#ccc", mt: 2, overflowWrap: "anywhere", whiteSpace: "pre-line" }}>
+<Typography sx={{ color: "#ccc", mt: 2, overflowWrap: "anywhere", whiteSpace: "pre-line", lineHeight: 1.75 }}>
 {selectedNote.content}
 </Typography>
 
@@ -287,7 +296,9 @@ AI Result
 sx={{
 color: "#ccc",
 mt: 1,
-whiteSpace: "pre-line"
+whiteSpace: "pre-line",
+lineHeight: 1.7,
+overflowWrap: "anywhere"
 }}
 > 
 {aiResult}

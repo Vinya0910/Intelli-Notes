@@ -37,24 +37,25 @@ function Signup() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        p: 2,
+        p: { xs: 2, sm: 3 },
         background:
-          "radial-gradient(circle at 24% 16%, rgba(125,211,252,0.22), transparent 34%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          "radial-gradient(circle at 20% 12%, rgba(125,211,252,0.24), transparent 32%), radial-gradient(circle at 84% 16%, rgba(165,180,252,0.18), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
       <Card
         sx={{
-          width: { xs: "90%", sm: 400 },
-          p: 3,
+          width: "100%",
+          maxWidth: 430,
+          p: { xs: 1, sm: 2 },
           color: "white",
-          backdropFilter: "blur(18px)"
+          backdropFilter: "blur(22px)"
         }}
       >
 
         <CardContent>
 
-          <Typography variant="h4" align="center" gutterBottom sx={{ color: "white" }}>
+          <Typography variant="h4" align="center" gutterBottom sx={{ color: "white", fontSize: { xs: 30, sm: 34 }, fontWeight: "bold" }}>
             Sign Up
           </Typography>
 
@@ -86,7 +87,7 @@ function Signup() {
           <Button
             variant="contained"
             fullWidth
-            sx={{ mt: 2 }}
+            sx={{ mt: 2.5, py: 1.2 }}
             onClick={handleSignup} 
           >
             Create Account

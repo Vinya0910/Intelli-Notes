@@ -49,20 +49,22 @@ return;
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+          "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        overflowX: "hidden"
       }}
     >
 
       {/* Sidebar */}
       <Sidebar />
 
-      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, display: "flex", justifyContent: "center", minWidth: 0 }}>
+      <Box sx={{ flexGrow: 1, p: { xs: 2, sm: 3, md: 4 }, display: "flex", justifyContent: "center", minWidth: 0 }}>
 
         <Card
           sx={{
-            width: { xs: "100%", md: "72%", lg: "60%" },
+            width: "100%",
+            maxWidth: 760,
             color: "white",
-            backdropFilter: "blur(18px)",
+            backdropFilter: "blur(22px)",
             alignSelf: "flex-start"
           }}
         >
@@ -91,13 +93,13 @@ return;
               fullWidth
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              sx={{ mb: 5 }}
+              sx={{ mb: 3 }}
             />
 
             {/* Save Button */}
             <Button
               variant="contained"
-              sx={{ mt: 2 }}
+              sx={{ mt: 1, minWidth: { xs: "100%", sm: 150 } }}
               onClick={handleSaveNote}
             >
               Save Note
