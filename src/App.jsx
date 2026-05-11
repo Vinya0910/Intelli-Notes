@@ -29,15 +29,15 @@ function App() {
     palette: {
       mode: lightMode ? "light" : "dark",
       primary: {
-        main: lightMode ? "#0284c7" : "#7dd3fc",
+        main: lightMode ? "#3f6478" : "#7dd3fc",
         contrastText: "#07111f",
       },
       secondary: {
-        main: lightMode ? "#4f46e5" : "#a5b4fc",
+        main: lightMode ? "#64748b" : "#a5b4fc",
       },
       background: {
-        default: lightMode ? "#f4f7fb" : "#07111f",
-        paper: lightMode ? "#ffffff" : "rgba(15, 23, 42, 0.78)",
+        default: lightMode ? "#eef2f6" : "#07111f",
+        paper: lightMode ? "#f8fafc" : "rgba(15, 23, 42, 0.78)",
       },
       text: {
         primary: lightMode ? "#111827" : "#f8fafc",
@@ -71,14 +71,14 @@ function App() {
         styleOverrides: {
           root: {
             backgroundImage: lightMode
-              ? "linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.92))"
-              : "linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72))",
+              ? "linear-gradient(145deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.9))"
+              : "linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.72))",
             border: lightMode
-              ? "1px solid rgba(148, 163, 184, 0.22)"
+              ? "1px solid rgba(100, 116, 139, 0.24)"
               : "1px solid rgba(148, 163, 184, 0.18)",
             boxShadow: lightMode
-              ? "0 24px 60px rgba(15, 23, 42, 0.1)"
-              : "0 24px 70px rgba(2, 6, 23, 0.34)",
+              ? "0 18px 44px rgba(15, 23, 42, 0.08)"
+              : "0 24px 70px rgba(2, 6, 23, 0.38)",
           },
         },
       },
@@ -107,18 +107,18 @@ function App() {
           },
           containedPrimary: {
             background: lightMode
-              ? "linear-gradient(135deg, #0284c7 0%, #4f46e5 100%)"
+              ? "linear-gradient(135deg, #3f6478 0%, #66758a 100%)"
               : "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
             color: "#ffffff",
             "&:hover": {
               boxShadow: lightMode
-                ? "0 14px 34px rgba(2, 132, 199, 0.24)"
+                ? "0 10px 24px rgba(63, 100, 120, 0.18)"
                 : "0 14px 34px rgba(125, 211, 252, 0.24)",
             },
           },
           outlined: {
             borderColor: lightMode
-              ? "rgba(15, 23, 42, 0.22)"
+              ? "rgba(100, 116, 139, 0.34)"
               : "rgba(226, 232, 240, 0.28)",
           },
         },
@@ -131,22 +131,31 @@ function App() {
           root: {
             "& .MuiOutlinedInput-root": {
               background: lightMode
-                ? "rgba(255, 255, 255, 0.88)"
+                ? "rgba(248, 250, 252, 0.9)"
                 : "rgba(15, 23, 42, 0.62)",
               borderRadius: 8,
               "& fieldset": {
                 borderColor: lightMode
-                  ? "rgba(148, 163, 184, 0.36)"
+                  ? "rgba(100, 116, 139, 0.28)"
                   : "rgba(148, 163, 184, 0.26)",
               },
               "&:hover fieldset": {
                 borderColor: lightMode
-                  ? "rgba(2, 132, 199, 0.58)"
+                  ? "rgba(63, 100, 120, 0.5)"
                   : "rgba(125, 211, 252, 0.58)",
               },
               "&.Mui-focused fieldset": {
-                borderColor: lightMode ? "#0284c7" : "#7dd3fc",
+                borderColor: lightMode ? "#3f6478" : "#7dd3fc",
               },
+            },
+            "& .MuiInputBase-input": {
+              color: lightMode ? "#111827" : "#f8fafc",
+            },
+            "& .MuiInputLabel-root": {
+              color: lightMode ? "#64748b" : "#a8b3c7",
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: lightMode ? "#3f6478" : "#7dd3fc",
             },
           },
         },
@@ -156,8 +165,9 @@ function App() {
           root: {
             borderRadius: 8,
             background: lightMode
-              ? "rgba(255, 255, 255, 0.88)"
+              ? "rgba(248, 250, 252, 0.9)"
               : "rgba(15, 23, 42, 0.62)",
+            color: lightMode ? "#111827" : "#f8fafc",
           },
         },
       },

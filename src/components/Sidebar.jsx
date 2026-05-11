@@ -32,9 +32,12 @@ function Sidebar() {
           md: 0
         },
         background: (theme) => theme.palette.mode === "light"
-          ? "rgba(255, 255, 255, 0.86)"
-          : "rgba(4, 12, 24, 0.82)",
+          ? "linear-gradient(180deg, rgba(248,250,252,0.88), rgba(238,242,246,0.82))"
+          : "linear-gradient(180deg, rgba(4, 12, 24, 0.9), rgba(8, 17, 31, 0.82))",
         backdropFilter: "blur(22px)",
+        boxShadow: (theme) => theme.palette.mode === "light"
+          ? { xs: "0 10px 26px rgba(15, 23, 42, 0.06)", md: "12px 0 32px rgba(15, 23, 42, 0.04)" }
+          : { xs: "0 10px 26px rgba(2, 6, 23, 0.22)", md: "12px 0 32px rgba(2, 6, 23, 0.14)" },
         display: "flex",
         flexDirection: { xs: "row", md: "column" },
         alignItems: { xs: "center", md: "stretch" },
@@ -113,14 +116,16 @@ function Sidebar() {
               "&.active": {
                 color: "#ffffff",
                 background: (theme) => theme.palette.mode === "light"
-                  ? "linear-gradient(135deg, #0284c7 0%, #4f46e5 100%)"
+                  ? "linear-gradient(135deg, #3f6478 0%, #66758a 100%)"
                   : "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
-                boxShadow: "0 14px 28px rgba(125, 211, 252, 0.18)"
+                boxShadow: (theme) => theme.palette.mode === "light"
+                  ? "0 10px 22px rgba(63, 100, 120, 0.18)"
+                  : "0 14px 28px rgba(125, 211, 252, 0.18)"
               },
               "&:hover": {
                 color: "text.primary",
                 backgroundColor: (theme) => theme.palette.mode === "light"
-                  ? "rgba(14, 165, 233, 0.08)"
+                  ? "rgba(100, 116, 139, 0.1)"
                   : "rgba(148, 163, 184, 0.12)",
                 borderColor: "rgba(148, 163, 184, 0.18)"
               }

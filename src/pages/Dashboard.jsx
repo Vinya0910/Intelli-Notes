@@ -78,7 +78,7 @@ display: "flex",
 flexDirection: { xs: "column", md: "row" },
 minHeight: "100vh",
 background: (theme) => theme.palette.mode === "light"
-? "radial-gradient(circle at 18% 12%, rgba(14,165,233,0.16), transparent 32%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.12), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+? "radial-gradient(circle at 18% 12%, rgba(100,116,139,0.14), transparent 32%), radial-gradient(circle at 82% 18%, rgba(63,100,120,0.1), transparent 30%), linear-gradient(135deg,#eef2f6,#e8eef4 54%,#f3f6f9)"
 : "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
 overflowX: "hidden"
 }}
@@ -170,10 +170,10 @@ sx={{
 mb: 2,
 background: (theme) => selectedNote?.id === note.id
 ? theme.palette.mode === "light"
-  ? "linear-gradient(135deg, rgba(14,165,233,0.14), rgba(79,70,229,0.08))"
+  ? "linear-gradient(135deg, rgba(63,100,120,0.13), rgba(100,116,139,0.08))"
   : "linear-gradient(135deg, rgba(125,211,252,0.18), rgba(165,180,252,0.12))"
 : theme.palette.mode === "light"
-  ? "rgba(255,255,255,0.86)"
+  ? "rgba(248,250,252,0.86)"
   : "rgba(15,23,42,0.62)",
 color: "text.primary",
 cursor: "pointer",
@@ -185,13 +185,17 @@ border: selectedNote?.id === note.id
 
 "&:hover": {
 transform: { xs: "translateY(-2px)", md: "translateX(4px)" },
-borderColor: "rgba(125, 211, 252, 0.38)"
+borderColor: (theme) => theme.palette.mode === "light" ? "rgba(63, 100, 120, 0.42)" : "rgba(125, 211, 252, 0.38)"
 },
 
 boxShadow:
-selectedNote?.id === note.id
-? "0 18px 45px rgba(2, 6, 23, 0.28)"
-: "0 12px 28px rgba(2, 6, 23, 0.18)"
+(theme) => selectedNote?.id === note.id
+? theme.palette.mode === "light"
+  ? "0 18px 42px rgba(14, 165, 233, 0.16)"
+  : "0 18px 45px rgba(2, 6, 23, 0.28)"
+: theme.palette.mode === "light"
+  ? "0 12px 28px rgba(15, 23, 42, 0.08)"
+  : "0 12px 28px rgba(2, 6, 23, 0.18)"
 
 }}
 >
@@ -244,7 +248,7 @@ width: "6px"
 background: "transparent"
 },
 "&::-webkit-scrollbar-thumb": {
-background: (theme) => theme.palette.mode === "light" ? "#0284c7" : "#4fc3f7",
+background: (theme) => theme.palette.mode === "light" ? "#3f6478" : "#4fc3f7",
 borderRadius: "10px"
 }
 

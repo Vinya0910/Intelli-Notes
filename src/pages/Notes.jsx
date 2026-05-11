@@ -130,7 +130,7 @@ function Notes() {
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background: (theme) => theme.palette.mode === "light"
-          ? "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.1), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+          ? "radial-gradient(circle at 16% 10%, rgba(100,116,139,0.12), transparent 30%), radial-gradient(circle at 82% 18%, rgba(63,100,120,0.08), transparent 30%), linear-gradient(135deg,#eef2f6,#e8eef4 54%,#f3f6f9)"
           : "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
         overflowX: "hidden"
       }}
@@ -171,15 +171,21 @@ function Notes() {
             "& .MuiOutlinedInput-root": {
 
               "& fieldset": {
-                borderColor: "rgba(255,255,255,0.3)"
+                borderColor: (theme) => theme.palette.mode === "light"
+                  ? "rgba(100, 116, 139, 0.28)"
+                  : "rgba(255,255,255,0.3)"
               },
 
               "&:hover fieldset": {
-                borderColor: "#4fc3f7"
+                borderColor: (theme) => theme.palette.mode === "light"
+                  ? "#3f6478"
+                  : "#4fc3f7"
               },
 
               "&.Mui-focused fieldset": {
-                borderColor: "#4fc3f7"
+                borderColor: (theme) => theme.palette.mode === "light"
+                  ? "#3f6478"
+                  : "#4fc3f7"
               }
             }
           }}
@@ -196,10 +202,15 @@ function Notes() {
               color: "text.primary",
               backdropFilter: "blur(18px)",
               transition: "transform 0.2s ease, border-color 0.2s ease",
+              background: (theme) => theme.palette.mode === "light"
+                ? "rgba(248, 250, 252, 0.88)"
+                : "rgba(15, 23, 42, 0.72)",
 
               "&:hover": {
                 transform: "translateY(-3px)",
-                borderColor: "rgba(125, 211, 252, 0.38)"
+                borderColor: (theme) => theme.palette.mode === "light"
+                  ? "rgba(63, 100, 120, 0.42)"
+                  : "rgba(125, 211, 252, 0.38)"
               }
             }}
           >

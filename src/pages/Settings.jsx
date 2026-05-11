@@ -43,7 +43,7 @@ function Settings({ lightMode, setLightMode }) {
         minHeight: "100vh",
         background:
           lightMode
-            ? "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.1), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+            ? "radial-gradient(circle at 16% 10%, rgba(100,116,139,0.12), transparent 30%), radial-gradient(circle at 82% 18%, rgba(63,100,120,0.08), transparent 30%), linear-gradient(135deg,#eef2f6,#e8eef4 54%,#f3f6f9)"
             : "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
         overflowX: "hidden"
       }}
@@ -72,8 +72,11 @@ function Settings({ lightMode, setLightMode }) {
             backdropFilter: "blur(18px)",
 
             background: lightMode
-              ? "rgba(255,255,255,0.92)"
-              : "rgba(15,23,42,0.7)"
+              ? "rgba(248,250,252,0.9)"
+              : "rgba(15,23,42,0.7)",
+            boxShadow: lightMode
+              ? "0 20px 54px rgba(15, 23, 42, 0.1)"
+              : "0 24px 70px rgba(2, 6, 23, 0.34)"
           }}
         >
 
@@ -99,7 +102,7 @@ function Settings({ lightMode, setLightMode }) {
                   ? "1px solid rgba(15, 23, 42, 0.1)"
                   : "1px solid rgba(148, 163, 184, 0.18)",
                 background: lightMode
-                  ? "rgba(241, 245, 249, 0.72)"
+                  ? "rgba(226, 232, 240, 0.52)"
                   : "rgba(255,255,255,0.04)"
               }}
             >
