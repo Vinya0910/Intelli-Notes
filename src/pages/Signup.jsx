@@ -38,8 +38,9 @@ function Signup() {
         justifyContent: "center",
         alignItems: "center",
         p: { xs: 2, sm: 3 },
-        background:
-          "radial-gradient(circle at 20% 12%, rgba(125,211,252,0.24), transparent 32%), radial-gradient(circle at 84% 16%, rgba(165,180,252,0.18), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
+        background: (theme) => theme.palette.mode === "light"
+          ? "radial-gradient(circle at 20% 12%, rgba(14,165,233,0.16), transparent 32%), radial-gradient(circle at 84% 16%, rgba(79,70,229,0.12), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+          : "radial-gradient(circle at 20% 12%, rgba(125,211,252,0.24), transparent 32%), radial-gradient(circle at 84% 16%, rgba(165,180,252,0.18), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
       }}
     >
 
@@ -48,14 +49,14 @@ function Signup() {
           width: "100%",
           maxWidth: 430,
           p: { xs: 1, sm: 2 },
-          color: "white",
+          color: "text.primary",
           backdropFilter: "blur(22px)"
         }}
       >
 
         <CardContent>
 
-          <Typography variant="h4" align="center" gutterBottom sx={{ color: "white", fontSize: { xs: 30, sm: 34 }, fontWeight: "bold" }}>
+          <Typography variant="h4" align="center" gutterBottom sx={{ color: "text.primary", fontSize: { xs: 30, sm: 34 }, fontWeight: "bold" }}>
             Sign Up
           </Typography>
 
@@ -96,7 +97,7 @@ function Signup() {
           <Typography align="center" sx={{ mt: 2 }}>
             Already have an account?
             <span
-              style={{ color: "#7dd3fc", cursor: "pointer", fontWeight: "bold" }}
+              style={{ color: "#0284c7", cursor: "pointer", fontWeight: "bold" }}
               onClick={() => navigate("/login")}
             >
               {" "}Login

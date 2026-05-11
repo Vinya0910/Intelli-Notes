@@ -29,11 +29,11 @@ function App() {
     palette: {
       mode: lightMode ? "light" : "dark",
       primary: {
-        main: "#7dd3fc",
+        main: lightMode ? "#0284c7" : "#7dd3fc",
         contrastText: "#07111f",
       },
       secondary: {
-        main: "#a5b4fc",
+        main: lightMode ? "#4f46e5" : "#a5b4fc",
       },
       background: {
         default: lightMode ? "#f4f7fb" : "#07111f",
@@ -106,9 +106,14 @@ function App() {
             boxShadow: "none",
           },
           containedPrimary: {
-            background: "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
+            background: lightMode
+              ? "linear-gradient(135deg, #0284c7 0%, #4f46e5 100%)"
+              : "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
+            color: "#ffffff",
             "&:hover": {
-              boxShadow: "0 14px 34px rgba(125, 211, 252, 0.24)",
+              boxShadow: lightMode
+                ? "0 14px 34px rgba(2, 132, 199, 0.24)"
+                : "0 14px 34px rgba(125, 211, 252, 0.24)",
             },
           },
           outlined: {
@@ -135,10 +140,12 @@ function App() {
                   : "rgba(148, 163, 184, 0.26)",
               },
               "&:hover fieldset": {
-                borderColor: "rgba(125, 211, 252, 0.58)",
+                borderColor: lightMode
+                  ? "rgba(2, 132, 199, 0.58)"
+                  : "rgba(125, 211, 252, 0.58)",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "#7dd3fc",
+                borderColor: lightMode ? "#0284c7" : "#7dd3fc",
               },
             },
           },

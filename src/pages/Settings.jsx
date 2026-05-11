@@ -43,7 +43,7 @@ function Settings({ lightMode, setLightMode }) {
         minHeight: "100vh",
         background:
           lightMode
-            ? "#f4f7fb"
+            ? "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.1), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
             : "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
         overflowX: "hidden"
       }}
@@ -67,12 +67,12 @@ function Settings({ lightMode, setLightMode }) {
             maxWidth: 560,
             alignSelf: "flex-start",
 
-            color: lightMode ? "#111" : "white",
+            color: "text.primary",
 
             backdropFilter: "blur(18px)",
 
             background: lightMode
-              ? "white"
+              ? "rgba(255,255,255,0.92)"
               : "rgba(15,23,42,0.7)"
           }}
         >

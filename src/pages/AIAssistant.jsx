@@ -157,8 +157,9 @@ Rules:
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
-        background:
-          "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        background: (theme) => theme.palette.mode === "light"
+          ? "radial-gradient(circle at 18% 12%, rgba(14,165,233,0.16), transparent 32%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.12), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+          : "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
         overflowX: "hidden"
       }}
     >
@@ -182,7 +183,7 @@ Rules:
             maxWidth: 980,
             minHeight: { xs: "auto", md: "85vh" },
             backdropFilter: "blur(22px)",
-            color: "white",
+            color: "text.primary",
             overflow: "hidden"
           }}
         >
@@ -222,7 +223,7 @@ Rules:
               }}
               sx={{
                 mb: 4,
-                color: "white",
+                color: "text.primary",
                 "& .MuiSelect-icon": {
                   color: "text.secondary"
                 }
@@ -260,8 +261,8 @@ Rules:
               <Button
                 variant="outlined"
                 sx={{
-                  color: "white",
-                  borderColor: "white"
+                  color: "text.primary",
+                  borderColor: "divider"
                 }}
                 onClick={handleExplainSimply}
               >
@@ -271,8 +272,8 @@ Rules:
               <Button
                 variant="outlined"
                 sx={{
-                  color: "white",
-                  borderColor: "white"
+                  color: "text.primary",
+                  borderColor: "divider"
                 }}
                 onClick={handleInterviewPrep}
               >
@@ -292,7 +293,7 @@ Rules:
             <Typography
               sx={{
                 mt: 2,
-                color: "#ccc",
+                color: "text.secondary",
                 whiteSpace: "pre-line",
                 lineHeight: 1.7,
                 overflowWrap: "anywhere"
@@ -323,7 +324,7 @@ Rules:
 
               {chatHistory.length === 0 ? (
 
-                <Typography sx={{ color: "#aaa" }}>
+                <Typography sx={{ color: "text.secondary" }}>
                   Start chatting with AI...
                 </Typography>
 
@@ -348,7 +349,7 @@ Rules:
 
                     <Typography
                       sx={{
-                        color: "#ddd",
+                        color: "text.secondary",
                         overflowWrap: "anywhere",
                         whiteSpace: "pre-line"
                       }}

@@ -19,9 +19,21 @@ function Sidebar() {
         flexShrink: 0,
         px: { xs: 1.25, md: 2 },
         py: { xs: 1.25, md: 3 },
-        borderRight: { xs: 0, md: "1px solid rgba(148, 163, 184, 0.18)" },
-        borderBottom: { xs: "1px solid rgba(148, 163, 184, 0.18)", md: 0 },
-        background: "rgba(4, 12, 24, 0.82)",
+        borderRight: {
+          xs: 0,
+          md: (theme) => theme.palette.mode === "light"
+            ? "1px solid rgba(148, 163, 184, 0.24)"
+            : "1px solid rgba(148, 163, 184, 0.18)"
+        },
+        borderBottom: {
+          xs: (theme) => theme.palette.mode === "light"
+            ? "1px solid rgba(148, 163, 184, 0.24)"
+            : "1px solid rgba(148, 163, 184, 0.18)",
+          md: 0
+        },
+        background: (theme) => theme.palette.mode === "light"
+          ? "rgba(255, 255, 255, 0.86)"
+          : "rgba(4, 12, 24, 0.82)",
         backdropFilter: "blur(22px)",
         display: "flex",
         flexDirection: { xs: "row", md: "column" },
@@ -36,7 +48,7 @@ function Sidebar() {
         <Typography
           variant="h6"
           sx={{
-            color: "white",
+            color: "text.primary",
             lineHeight: 1,
             display: { xs: "none", md: "block" },
             fontWeight: 800
@@ -58,7 +70,7 @@ function Sidebar() {
         <Typography
           variant="h6"
           sx={{
-            color: "white",
+            color: "text.primary",
             textAlign: "center",
             display: { xs: "block", md: "none" },
             fontSize: { xs: 18, sm: 20 },
@@ -99,13 +111,17 @@ function Sidebar() {
               color: "text.secondary",
               fontSize: { xs: 13, md: 14 },
               "&.active": {
-                color: "primary.contrastText",
-                background: "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
+                color: "#ffffff",
+                background: (theme) => theme.palette.mode === "light"
+                  ? "linear-gradient(135deg, #0284c7 0%, #4f46e5 100%)"
+                  : "linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 100%)",
                 boxShadow: "0 14px 28px rgba(125, 211, 252, 0.18)"
               },
               "&:hover": {
-                color: "white",
-                backgroundColor: "rgba(148, 163, 184, 0.12)",
+                color: "text.primary",
+                backgroundColor: (theme) => theme.palette.mode === "light"
+                  ? "rgba(14, 165, 233, 0.08)"
+                  : "rgba(148, 163, 184, 0.12)",
                 borderColor: "rgba(148, 163, 184, 0.18)"
               }
             }}

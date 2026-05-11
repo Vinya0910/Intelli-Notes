@@ -77,8 +77,9 @@ sx={{
 display: "flex",
 flexDirection: { xs: "column", md: "row" },
 minHeight: "100vh",
-background:
-"radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+background: (theme) => theme.palette.mode === "light"
+? "radial-gradient(circle at 18% 12%, rgba(14,165,233,0.16), transparent 32%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.12), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+: "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
 overflowX: "hidden"
 }}
 >
@@ -104,7 +105,7 @@ sx={{
 width: { xs: "100%", sm: "88%", md: "80%" },
 maxWidth: "1000px",
 backdropFilter: "blur(18px)",
-color: "white",
+color: "text.primary",
 textAlign: "center",
 padding: { xs: 3, sm: 5, md: "55px" },
 transition: "0.35s",
@@ -130,7 +131,7 @@ fontSize: { xs: 30, sm: 40, md: 48 }
 
 <Typography
 sx={{
-color: "#ccc",
+color: "text.secondary",
 fontSize: { xs: 16, sm: 18 },
 lineHeight: 1.6
 }}
@@ -151,7 +152,7 @@ Capture your thoughts and let AI transform them into summaries, key points and i
 <Typography
 variant="h4"
 sx={{
-color: "white",
+color: "text.primary",
 mb: { xs: 2, md: 3 },
 fontWeight: "bold",
 letterSpacing: 0,
@@ -167,11 +168,14 @@ key={note.id}
 onClick={() => setSelectedNote(note)}
 sx={{
 mb: 2,
-background:
-selectedNote?.id === note.id
-? "linear-gradient(135deg, rgba(125,211,252,0.18), rgba(165,180,252,0.12))"
-: "rgba(15,23,42,0.62)",
-color: "white",
+background: (theme) => selectedNote?.id === note.id
+? theme.palette.mode === "light"
+  ? "linear-gradient(135deg, rgba(14,165,233,0.14), rgba(79,70,229,0.08))"
+  : "linear-gradient(135deg, rgba(125,211,252,0.18), rgba(165,180,252,0.12))"
+: theme.palette.mode === "light"
+  ? "rgba(255,255,255,0.86)"
+  : "rgba(15,23,42,0.62)",
+color: "text.primary",
 cursor: "pointer",
 transition: "0.25s",
 width: "100%",
@@ -229,7 +233,7 @@ sx={{
 width: { xs: "100%", md: "85%" },
 maxWidth: 880,
 backdropFilter: "blur(18px)",
-color: "white",
+color: "text.primary",
 maxHeight: { xs: "none", md: "80vh" },
 overflowY: "auto",
 
@@ -240,7 +244,7 @@ width: "6px"
 background: "transparent"
 },
 "&::-webkit-scrollbar-thumb": {
-background: "#4fc3f7",
+background: (theme) => theme.palette.mode === "light" ? "#0284c7" : "#4fc3f7",
 borderRadius: "10px"
 }
 
@@ -253,7 +257,7 @@ borderRadius: "10px"
 {selectedNote.title}
 </Typography>
 
-<Typography sx={{ color: "#ccc", mt: 2, overflowWrap: "anywhere", whiteSpace: "pre-line", lineHeight: 1.75 }}>
+<Typography sx={{ color: "text.secondary", mt: 2, overflowWrap: "anywhere", whiteSpace: "pre-line", lineHeight: 1.75 }}>
 {selectedNote.content}
 </Typography>
 
@@ -272,7 +276,7 @@ GenerateSummary
 
 <Button
 variant="outlined"
-sx={{ color: "white", borderColor: "white" }}
+sx={{ color: "text.primary", borderColor: "divider" }}
 onClick={handleKeyPoints}
 > 
 KeyPoints
@@ -280,7 +284,7 @@ KeyPoints
 
 <Button
 variant="outlined"
-sx={{ color: "white", borderColor: "white" }}
+sx={{ color: "text.primary", borderColor: "divider" }}
 onClick={handleQuestions}
 > 
 Questions
@@ -294,7 +298,7 @@ AI Result
 
 <Typography
 sx={{
-color: "#ccc",
+color: "text.secondary",
 mt: 1,
 whiteSpace: "pre-line",
 lineHeight: 1.7,

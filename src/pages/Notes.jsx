@@ -129,8 +129,9 @@ function Notes() {
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
-        background:
-          "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
+        background: (theme) => theme.palette.mode === "light"
+          ? "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(79,70,229,0.1), transparent 30%), linear-gradient(135deg,#f8fafc,#eaf4ff 54%,#f4f7fb)"
+          : "radial-gradient(circle at 16% 10%, rgba(125,211,252,0.14), transparent 30%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)",
         overflowX: "hidden"
       }}
     >
@@ -148,7 +149,7 @@ function Notes() {
         }}
       >
 
-        <Typography variant="h4" sx={{ color: "white", mb: { xs: 3, md: 4 }, fontSize: { xs: 28, md: 34 } }}>
+        <Typography variant="h4" sx={{ color: "text.primary", mb: { xs: 3, md: 4 }, fontSize: { xs: 28, md: 34 } }}>
           All Notes
         </Typography>
 
@@ -164,7 +165,7 @@ function Notes() {
             mb: 4,
 
             input: {
-              color: "white"
+              color: "text.primary"
             },
 
             "& .MuiOutlinedInput-root": {
@@ -192,7 +193,7 @@ function Notes() {
               width: "100%",
               maxWidth: 820,
               mb: 3,
-              color: "white",
+              color: "text.primary",
               backdropFilter: "blur(18px)",
               transition: "transform 0.2s ease, border-color 0.2s ease",
 
@@ -231,7 +232,7 @@ function Notes() {
                   <Typography
                     sx={{
                       mt: 1,
-                      color: "#ccc",
+                      color: "text.secondary",
                       lineHeight: 1.6,
                       whiteSpace: "pre-line",
                       overflowWrap: "anywhere"
@@ -279,7 +280,7 @@ function Notes() {
                     <Button
                       variant="outlined"
                       size="small"
-                      sx={{ color: "white", borderColor: "white" }}
+                      sx={{ color: "text.primary", borderColor: "divider" }}
                       onClick={() => handlePin(note.id, note.isPinned)}
                     >
                       {note.isPinned ? "Unpin" : "Pin"}
