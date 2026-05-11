@@ -46,6 +46,7 @@ return;
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
           "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
@@ -55,19 +56,20 @@ return;
       {/* Sidebar */}
       <Sidebar />
 
-      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, display: "flex", justifyContent: "center", minWidth: 0 }}>
 
         <Card
           sx={{
             width: { xs: "100%", md: "72%", lg: "60%" },
             color: "white",
-            backdropFilter: "blur(18px)"
+            backdropFilter: "blur(18px)",
+            alignSelf: "flex-start"
           }}
         >
 
           <CardContent>
 
-            <Typography variant="h4" sx={{ mb: 3 }}>
+            <Typography variant="h4" sx={{ mb: 3, fontSize: { xs: 28, md: 34 } }}>
               Create New Note
             </Typography>
 

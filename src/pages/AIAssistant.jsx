@@ -155,6 +155,7 @@ Rules:
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
           "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
@@ -169,14 +170,15 @@ Rules:
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          p: 4
+          p: { xs: 2, md: 4 },
+          minWidth: 0
         }}
       >
 
         <Card
           sx={{
-            width: "85%",
-            minHeight: "85vh",
+            width: { xs: "100%", md: "85%" },
+            minHeight: { xs: "auto", md: "85vh" },
             backdropFilter: "blur(18px)",
             color: "white",
             overflow: "hidden"
@@ -189,7 +191,8 @@ Rules:
               variant="h4"
               sx={{
                 mb: 4,
-                fontWeight: "bold"
+                fontWeight: "bold",
+                fontSize: { xs: 28, md: 34 }
               }}
             >
               AI Assistant
@@ -240,38 +243,38 @@ Rules:
               AI Tools
             </Typography>
 
-            <Button
-              variant="contained"
-              sx={{ mr: 2, mb: 2 }}
-              onClick={handleFlashcards}
-            >
-              Flashcards
-            </Button>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2 }}>
 
-            <Button
-              variant="outlined"
-              sx={{
-                mr: 2,
-                mb: 2,
-                color: "white",
-                borderColor: "white"
-              }}
-              onClick={handleExplainSimply}
-            >
-              Explain Simply
-            </Button>
+              <Button
+                variant="contained"
+                onClick={handleFlashcards}
+              >
+                Flashcards
+              </Button>
 
-            <Button
-              variant="outlined"
-              sx={{
-                mb: 2,
-                color: "white",
-                borderColor: "white"
-              }}
-              onClick={handleInterviewPrep}
-            >
-              Interview Prep
-            </Button>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  borderColor: "white"
+                }}
+                onClick={handleExplainSimply}
+              >
+                Explain Simply
+              </Button>
+
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  borderColor: "white"
+                }}
+                onClick={handleInterviewPrep}
+              >
+                Interview Prep
+              </Button>
+
+            </Box>
 
             {/* AI RESULT */}
             <Typography
@@ -286,7 +289,8 @@ Rules:
                 mt: 2,
                 color: "#ccc",
                 whiteSpace: "pre-line",
-                lineHeight: 1.7
+                lineHeight: 1.7,
+                overflowWrap: "anywhere"
               }}
             >
               {aiResult}
@@ -338,7 +342,9 @@ Rules:
 
                     <Typography
                       sx={{
-                        color: "#ddd"
+                        color: "#ddd",
+                        overflowWrap: "anywhere",
+                        whiteSpace: "pre-line"
                       }}
                     >
                       {msg.text}

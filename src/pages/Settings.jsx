@@ -39,6 +39,7 @@ function Settings({ lightMode, setLightMode }) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
           lightMode
@@ -54,13 +55,15 @@ function Settings({ lightMode, setLightMode }) {
           flexGrow: 1,
           p: { xs: 2, md: 4 },
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          minWidth: 0
         }}
       >
 
         <Card
           sx={{
             width: { xs: "100%", md: "52%", lg: "40%" },
+            alignSelf: "flex-start",
 
             color: lightMode ? "#111" : "white",
 
@@ -74,7 +77,7 @@ function Settings({ lightMode, setLightMode }) {
 
           <CardContent>
 
-            <Typography variant="h4" sx={{ mb: 3 }}>
+            <Typography variant="h4" sx={{ mb: 3, fontSize: { xs: 28, md: 34 } }}>
               Settings
             </Typography>
 

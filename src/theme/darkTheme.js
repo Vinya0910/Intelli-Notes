@@ -27,11 +27,11 @@ const darkTheme = createTheme({
     fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
     h3: {
       fontWeight: 800,
-      letterSpacing: "-0.03em"
+      letterSpacing: 0
     },
     h4: {
       fontWeight: 800,
-      letterSpacing: "-0.025em"
+      letterSpacing: 0
     },
     h6: {
       fontWeight: 700

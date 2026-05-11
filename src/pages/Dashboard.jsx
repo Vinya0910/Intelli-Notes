@@ -75,6 +75,7 @@ return (
 <Box
 sx={{
 display: "flex",
+flexDirection: { xs: "column", md: "row" },
 minHeight: "100vh",
 background:
 "radial-gradient(circle at 18% 12%, rgba(125,211,252,0.18), transparent 32%), radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
@@ -91,18 +92,19 @@ flexGrow: 1,
 display: "flex",
 justifyContent: "center",
 alignItems: "center",
-p: { xs: 2, md: 4 }
+p: { xs: 2, md: 4 },
+minWidth: 0
 }}
 >
 
 <Card
 sx={{
-width: "80%",
+width: { xs: "100%", sm: "88%", md: "80%" },
 maxWidth: "1000px",
 backdropFilter: "blur(18px)",
 color: "white",
 textAlign: "center",
-padding: "55px",
+padding: { xs: 3, sm: 5, md: "55px" },
 transition: "0.35s",
 
 "&:hover": {
@@ -117,7 +119,8 @@ borderColor: "rgba(125, 211, 252, 0.38)"
 variant="h3"
 sx={{
 fontWeight: "bold",
-mb: 3
+mb: 3,
+fontSize: { xs: 30, sm: 40, md: 48 }
 }}
 > 
 "Every idea begins with a note."
@@ -126,7 +129,7 @@ mb: 3
 <Typography
 sx={{
 color: "#ccc",
-fontSize: "18px",
+fontSize: { xs: 16, sm: 18 },
 lineHeight: 1.6
 }}
 > 
@@ -141,15 +144,16 @@ Capture your thoughts and let AI transform them into summaries, key points and i
 
 <>
 
-<Box sx={{ width: { xs: "34%", md: "30%" }, minWidth: { xs: 180, md: 280 }, p: { xs: 2, md: 3 } }}>
+<Box sx={{ width: { xs: "100%", md: "32%" }, minWidth: { xs: 0, md: 280 }, p: { xs: 2, md: 3 } }}>
 
 <Typography
 variant="h4"
 sx={{
 color: "white",
-mb: 3,
+mb: { xs: 2, md: 3 },
 fontWeight: "bold",
-letterSpacing: "-0.03em"
+letterSpacing: 0,
+fontSize: { xs: 28, md: 34 }
 }}
 > 
 YourNotes
@@ -205,7 +209,8 @@ flexGrow: 1,
 display: "flex",
 justifyContent:"center",
 alignItems:"center",
-p: { xs: 2, md: 4 }
+p: { xs: 2, md: 4 },
+minWidth: 0
 }}
 >
 
@@ -213,10 +218,10 @@ p: { xs: 2, md: 4 }
 
 <Card
 sx={{
-width: "85%",
+width: { xs: "100%", md: "85%" },
 backdropFilter: "blur(18px)",
 color: "white",
-maxHeight: "80vh",
+maxHeight: { xs: "none", md: "80vh" },
 overflowY: "auto",
 
 "&::-webkit-scrollbar": {
@@ -235,11 +240,11 @@ borderRadius: "10px"
 
 <CardContent>
 
-<Typography variant="h4">
+<Typography variant="h4" sx={{ fontSize: { xs: 28, md: 34 }, overflowWrap: "anywhere" }}>
 {selectedNote.title}
 </Typography>
 
-<Typography sx={{ color: "#ccc", mt: 2 }}>
+<Typography sx={{ color: "#ccc", mt: 2, overflowWrap: "anywhere", whiteSpace: "pre-line" }}>
 {selectedNote.content}
 </Typography>
 
@@ -247,9 +252,10 @@ borderRadius: "10px"
 AI Tools
 </Typography>
 
+<Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 2 }}>
+
 <Button
 variant="contained"
-sx={{ mt: 2, mr: 2 }}
 onClick={handleSummary}
 > 
 GenerateSummary
@@ -257,7 +263,7 @@ GenerateSummary
 
 <Button
 variant="outlined"
-sx={{ mt: 2, mr: 2, color: "white", borderColor: "white" }}
+sx={{ color: "white", borderColor: "white" }}
 onClick={handleKeyPoints}
 > 
 KeyPoints
@@ -265,11 +271,13 @@ KeyPoints
 
 <Button
 variant="outlined"
-sx={{ mt: 2, color: "white", borderColor: "white" }}
+sx={{ color: "white", borderColor: "white" }}
 onClick={handleQuestions}
 > 
 Questions
 </Button>
+
+</Box>
 
 <Typography variant="h6" sx={{ mt: 4 }}>
 AI Result

@@ -107,6 +107,7 @@ function PinnedNotes() {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         background:
           "radial-gradient(circle at 82% 18%, rgba(196,181,253,0.16), transparent 30%), linear-gradient(135deg,#07111f,#10283a 54%,#172033)"
@@ -121,11 +122,12 @@ function PinnedNotes() {
           p: { xs: 2, md: 4 },
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          minWidth: 0
         }}
       >
 
-        <Typography variant="h4" sx={{ color: "white", mb: 4 }}>
+        <Typography variant="h4" sx={{ color: "white", mb: { xs: 3, md: 4 }, fontSize: { xs: 28, md: 34 } }}>
           Pinned Notes
         </Typography>
 
@@ -177,7 +179,8 @@ function PinnedNotes() {
                       mt: 1,
                       color: "#ccc",
                       lineHeight: 1.6,
-                      whiteSpace: "pre-line"
+                      whiteSpace: "pre-line",
+                      overflowWrap: "anywhere"
                     }}
                   >
                     {note.content}
@@ -185,7 +188,7 @@ function PinnedNotes() {
                 </>
               )}
 
-              <Box sx={{ mt: 2 }}>
+              <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1.5 }}>
 
                 {editingId === note.id ? (
                   <>
@@ -200,7 +203,6 @@ function PinnedNotes() {
                     <Button
                       variant="outlined"
                       size="small"
-                      sx={{ ml: 2 }}
                       onClick={() => setEditingId(null)}
                     >
                       Cancel
@@ -211,7 +213,6 @@ function PinnedNotes() {
                     <Button
                       variant="contained"
                       size="small"
-                      sx={{ mr: 2 }}
                       onClick={() => {
                         setEditingId(note.id);
                         setEditTitle(note.title);
@@ -225,7 +226,7 @@ function PinnedNotes() {
                     <Button
                       variant="outlined"
                       size="small"
-                      sx={{ mr: 2, color: "white", borderColor: "white" }}
+                      sx={{ color: "white", borderColor: "white" }}
                       onClick={() => handlePin(note.id,note.isPinned)}
                     >
                       {note.isPinned ? "Unpin" : "Pin"}
