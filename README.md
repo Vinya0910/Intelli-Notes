@@ -55,7 +55,7 @@ src/
 
 ---
 
-✨ Future Improvements
+✨ Improvements made
 
 - 📱 Mobile responsiveness improvements
 - 🔍 Search & filter notes
