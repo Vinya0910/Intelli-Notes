@@ -187,4 +187,3 @@ function CreateNote() {
 }
 
 export default CreateNote;
-// fuctionality changed 
