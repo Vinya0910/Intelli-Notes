@@ -34,6 +34,9 @@ function AIAssistant() {
 
   const [aiResult, setAiResult] = useState("");
 
+  // NEW
+  const [difficulty, setDifficulty] = useState("Medium");
+
   // FETCH NOTES
   useEffect(() => {
 
@@ -72,20 +75,28 @@ function AIAssistant() {
 
     const prompt = `
 You are an AI study assistant.
-Give concise and well- structured answers.
-Rules:
--Use bullet points whenever possible
--Keep answers clean and readable
--Avoid very large paragraph
--Use headings if needed
-- Explain clearly and shortly
-- Keep space after every point.
-      Note:
-      ${selectedNote.content}
 
-      User:
-      ${chatInput}
-    `;
+Your job is to answer ONLY questions related to the provided notes.
+
+STRICT RULES:
+- Answer ONLY from the notes content
+- Do NOT answer unrelated questions
+- If question is unrelated, reply ONLY:
+"Please ask questions related to the selected note only."
+
+- Keep answers concise and educational
+- Use bullet points whenever possible
+- Avoid large paragraphs
+- Use headings if needed
+- Explain concepts clearly
+- Use examples if helpful
+
+NOTES:
+${selectedNote.content}
+
+QUESTION:
+${chatInput}
+`;
 
     const result = await generateAI(prompt);
 
@@ -105,10 +116,20 @@ Rules:
     if (!selectedNote) return;
 
     const prompt = `
-      Create flashcards from this note:
+You are an expert AI learning assistant.
 
-      ${selectedNote.content}
-    `;
+Create high-quality flashcards from these notes.
+
+Rules:
+- Create concise question-answer flashcards
+- Focus on important concepts
+- Keep answers short and clear
+- Use easy-to-understand language
+- Make flashcards revision-friendly
+
+NOTES:
+${selectedNote.content}
+`;
 
     const result = await generateAI(prompt);
 
@@ -122,10 +143,21 @@ Rules:
     if (!selectedNote) return;
 
     const prompt = `
-      Explain this note in beginner-friendly language:
+You are an expert teacher.
 
-      ${selectedNote.content}
-    `;
+Explain these notes in a beginner-friendly way.
+
+Rules:
+- Use very simple language
+- Explain concepts step-by-step
+- Use examples wherever needed
+- Avoid technical complexity
+- Keep explanation clean and readable
+- Use bullet points and headings
+
+NOTES:
+${selectedNote.content}
+`;
 
     const result = await generateAI(prompt);
 
@@ -139,10 +171,27 @@ Rules:
     if (!selectedNote) return;
 
     const prompt = `
-      Generate interview questions and answers from this note:
+You are an expert technical interviewer.
 
-      ${selectedNote.content}
-    `;
+Generate ${difficulty} level interview preparation from these notes.
+
+Generate:
+1. Interview questions
+2. Detailed answers
+3. Conceptual questions
+4. Scenario-based questions
+5. Important interview tips
+
+Rules:
+- Questions should test understanding
+- Avoid repeated questions
+- Keep answers professional
+- Focus on interview-relevant concepts
+- Use clean formatting
+
+NOTES:
+${selectedNote.content}
+`;
 
     const result = await generateAI(prompt);
 
@@ -238,6 +287,35 @@ Rules:
                   {note.title}
                 </MenuItem>
               ))}
+
+            </Select>
+
+            {/* DIFFICULTY */}
+            <Typography sx={{ mb: 1 }}>
+              Interview Difficulty
+            </Typography>
+
+            <Select
+              fullWidth
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+              sx={{
+                mb: 4,
+                color: "text.primary"
+              }}
+            >
+
+              <MenuItem value="Easy">
+                Easy
+              </MenuItem>
+
+              <MenuItem value="Medium">
+                Medium
+              </MenuItem>
+
+              <MenuItem value="Hard">
+                Hard
+              </MenuItem>
 
             </Select>
 

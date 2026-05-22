@@ -50,24 +50,84 @@ fetchNotes();
 
 
 const handleSummary = async () => {
+
 if (!selectedNote) return;
-const prompt = "Summarize this note:\n" + selectedNote.content;
+
+const prompt = `
+You are an expert study assistant.
+
+Analyze the following notes carefully and generate:
+
+1. A concise summary
+2. Important concepts
+3. Easy-to-understand explanation
+4. Use bullet points
+5. Keep response structured and clean
+
+NOTES:
+${selectedNote.content}
+`;
+
 const result = await generateAI(prompt);
+
 setAiResult(result);
+
 };
 
 const handleKeyPoints = async () => {
+
 if (!selectedNote) return;
-const prompt = "Give key points from this note:\n" + selectedNote.content;
+
+const prompt = `
+You are an AI learning assistant.
+
+Extract the MOST IMPORTANT key points from these notes.
+
+Rules:
+- Use bullet points
+- Avoid unnecessary details
+- Focus on concepts, definitions, formulas, and important facts
+- Keep points short and clear
+- Highlight interview-important topics
+
+NOTES:
+${selectedNote.content}
+`;
+
 const result = await generateAI(prompt);
+
 setAiResult(result);
+
 };
 
 const handleQuestions = async () => {
+
 if (!selectedNote) return;
-const prompt = "Generate questions from this note:\n" + selectedNote.content;
+
+const prompt = `
+You are an expert interviewer and educator.
+
+Generate high-quality questions from these notes.
+
+Generate:
+1. Beginner-level questions
+2. Interview questions
+3. Conceptual questions
+4. Scenario-based questions
+
+Rules:
+- Questions should test understanding
+- Avoid repeated questions
+- Make questions clear and professional
+
+NOTES:
+${selectedNote.content}
+`;
+
 const result = await generateAI(prompt);
+
 setAiResult(result);
+
 };
 
 return (
@@ -165,7 +225,9 @@ Your Notes
 {notes.map((note) => (
 <Card
 key={note.id}
-onClick={() => setSelectedNote(note)}
+onClick={() =>{ setSelectedNote(note)
+setAiResult("");
+}}
 sx={{
 mb: 2,
 background: (theme) => selectedNote?.id === note.id
@@ -209,7 +271,6 @@ py: { xs: 2, md: 2.25 },
 fontWeight: 700
 }}
 > 
-{/* 🔥 PIN ICON ADDED */}
 {note.isPinned ? "📌 " + note.title : note.title}
 </CardContent>
 

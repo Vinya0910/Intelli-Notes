@@ -15,7 +15,7 @@ import CreateNote from "./pages/CreateNote";
 import Settings from "./pages/Settings";
 import AIAssistant from "./pages/AIAssistant";
 import PinnedNotes from "./pages/PinnedNotes";
-
+import DocumentAI from   "./pages/DocumentAI";
 function App() {
 
   const [user, setUser] = useState(null);
@@ -250,6 +250,10 @@ function App() {
           <Route
             path="/pinned-notes"
             element={user ? <PinnedNotes /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/document-ai"
+            element={user ? <DocumentAI /> : <Navigate to="/login" />}
           />
 
         </Routes>

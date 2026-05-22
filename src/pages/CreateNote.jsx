@@ -1,5 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import { Box, Typography, Card, CardContent, TextField, Button } from "@mui/material";
+import MicIcon from "@mui/icons-material/Mic";
 import { useState } from "react";
 import { auth } from "../firebase/firebase";
 
@@ -149,30 +150,40 @@ function CreateNote() {
               sx={{ mb: 3 }}
             />
 
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: { xs: "stretch", sm: "center" },
+                gap: 1.5,
+                mt: 1
+              }}
+            >
             {/* VOICE BUTTON */}
             <Button
               variant="outlined"
+              startIcon={<MicIcon />}
               sx={{
-                mb: 3,
-                color: "white",
-                borderColor: "white"
+                minWidth: { xs: "100%", sm: 190 },
+                color: "text.primary",
+                borderColor: "divider"
               }}
               onClick={startListening}
             >
-              🎤 Start Recording
+              Start Recording
             </Button>
 
             {/* Save Button */}
             <Button
               variant="contained"
               sx={{
-                mt: 1,
                 minWidth: { xs: "100%", sm: 150 }
               }}
               onClick={handleSaveNote}
             >
               Save Note
             </Button>
+            </Box>
 
           </CardContent>
 
