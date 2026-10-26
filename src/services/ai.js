@@ -1,36 +1,38 @@
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 export const generateAI = async (prompt) => {
   try {
-
     const response = await axios.post(
-      "https://api.groq.com/openai/v1/chat/completions",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent",
       {
-        model: "llama-3.1-8b-instant",
-        messages: [
+        contents: [
           {
-            role: "user",
-            content: prompt
+            parts: [
+              {
+                text: prompt
+              }
+            ]
           }
         ]
       },
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization:` Bearer ${API_KEY}`
+          "x-goog-api-key": API_KEY
         }
       }
     );
 
-    return response.data.choices[0].message.content;
+    return response.data.candidates[0].content.parts[0].text;
 
   } catch (error) {
-
-    console.log("FULL ERROR:", error.response?.data);
+    console.log(
+      "FULL ERROR:",
+      error.response?.data || error.message
+    );
 
     return "AI response failed";
-
   }
 };
